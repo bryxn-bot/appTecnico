@@ -1,0 +1,941 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  font-family: 'Manrope', sans-serif;
+  color: #f4f7ff;
+  background: #07111f;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  --fixit-bg: #07111f;
+  --fixit-header: #061020;
+  --fixit-panel: #101b31;
+  --fixit-panel-light: #14233d;
+  --fixit-blue: #4f7df3;
+  --fixit-cyan: #35c9e6;
+  --fixit-text: #f4f7ff;
+  --fixit-muted: #b5c0d2;
+  --fixit-line: rgba(255, 255, 255, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--fixit-bg);
+  font-family: 'Manrope', sans-serif;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.fixit {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  color: var(--fixit-text);
+  background: var(--fixit-bg);
+}
+
+/* Encabezado: logo a la izquierda, navegación centrada, login a la derecha */
+.fixit-header {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 70px;
+  padding: 0 max(7vw, 24px);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background: var(--fixit-header);
+  border-bottom: 1px solid rgba(53, 201, 230, 0.75);
+}
+
+.fixit-brand {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.fixit-logo {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  color: #fff;
+  background: var(--fixit-blue);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.fixit-brand-name {
+  display: inline-block;
+}
+
+.fixit-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+  color: #e1e8f5;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fixit-nav a,
+.fixit-categories a,
+.fixit-secondary-button {
+  transition: color 0.2s ease;
+}
+
+.fixit-nav a:hover,
+.fixit-categories a:hover,
+.fixit-secondary-button:hover {
+  color: var(--fixit-cyan);
+}
+
+.fixit-login-button {
+  justify-self: end;
+  padding: 12px 17px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9px;
+  color: #fff;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.fixit-login-button:hover {
+  border-color: var(--fixit-blue);
+  background: rgba(79, 125, 243, 0.15);
+}
+
+.fixit-menu-toggle {
+  display: none;
+}
+
+/* Botones */
+.fixit-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px 17px;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--fixit-blue);
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.fixit-primary-button:hover {
+  background: #3d6ce0;
+  transform: translateY(-1px);
+}
+
+/* Portada */
+.fixit-hero {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 565px;
+  display: flex;
+  align-items: center;
+  padding: 60px max(7vw, 24px) 85px;
+  background-color: var(--fixit-bg);
+
+  /* Guarda la imagen en public/images/soporte.jpg */
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(5, 14, 29, 0.97) 0%,
+      rgba(5, 14, 29, 0.87) 45%,
+      rgba(5, 14, 29, 0.48) 100%
+    ),
+    linear-gradient(0deg, rgba(5, 14, 29, 0.48), rgba(5, 14, 29, 0.12)),
+    url('/images/soporte.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.fixit-hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(750px, 75%);
+}
+
+.fixit-eyebrow,
+.fixit-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #dce8fb;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.35px;
+}
+
+.fixit-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--fixit-cyan);
+  box-shadow: 0 0 12px rgba(53, 201, 230, 0.8);
+}
+
+.fixit-hero h1 {
+  margin: 22px 0 18px;
+  color: var(--fixit-text);
+  font-size: clamp(46px, 7vw, 76px);
+  font-weight: 800;
+  line-height: 0.99;
+  letter-spacing: -4px;
+}
+
+.fixit-hero h1 span {
+  color: #7ea1ff;
+}
+
+.fixit-description {
+  max-width: 500px;
+  margin: 0;
+  color: #c0cad9;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.fixit-actions {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  margin-top: 25px;
+}
+
+.fixit-secondary-button {
+  color: #d9e3f3;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.fixit-hero-note {
+  position: absolute;
+  right: max(9vw, 30px);
+  bottom: 115px;
+  z-index: 1;
+  width: 245px;
+  color: #e2eafa;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.fixit-note-line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-bottom: 13px;
+  background: rgba(221, 237, 255, 0.35);
+}
+
+.fixit-hero-note p {
+  margin: 0;
+}
+
+.fixit-bottom-label {
+  position: absolute;
+  right: max(7vw, 24px);
+  bottom: 17px;
+  left: max(7vw, 24px);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(53, 201, 230, 0.7);
+  color: #aab8ce;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Categorías */
+.fixit-categories {
+  min-height: 49px;
+  padding: 0 max(7vw, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 18px;
+  background: #0b1728;
+  border-bottom: 1px solid var(--fixit-line);
+}
+
+.fixit-categories a {
+  color: #b7c4d8;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+/* Beneficios */
+.fixit-benefits {
+  padding: 75px max(9vw, 24px) 65px;
+  color: var(--fixit-text);
+  background: var(--fixit-panel);
+}
+
+.fixit-benefits-heading {
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.fixit-section-label {
+  color: #83a5ff;
+}
+
+.fixit-benefits-heading h2,
+.fixit-process-copy h2,
+.fixit-join h2 {
+  margin: 13px 0 0;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+}
+
+.fixit-benefits-heading > p,
+.fixit-process-copy > p,
+.fixit-join-action p {
+  max-width: 330px;
+  color: var(--fixit-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.fixit-benefits-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--fixit-line);
+  border-bottom: 1px solid var(--fixit-line);
+}
+
+.fixit-benefit {
+  position: relative;
+  min-height: 165px;
+  padding: 20px;
+  border-right: 1px solid var(--fixit-line);
+}
+
+.fixit-benefit:last-child {
+  border-right: 0;
+}
+
+.fixit-benefit-icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: #9bb4ff;
+  background: rgba(79, 125, 243, 0.2);
+  font-size: 18px;
+}
+
+.fixit-card-number {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  color: #aab8ce;
+  font-size: 9px;
+}
+
+.fixit-benefit h3 {
+  margin: 25px 0 8px;
+  font-size: 15px;
+}
+
+.fixit-benefit p {
+  max-width: 260px;
+  margin: 0;
+  color: var(--fixit-muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* Proceso */
+.fixit-process {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 70px;
+  padding: 70px max(12vw, 24px);
+  color: var(--fixit-text);
+  background: var(--fixit-bg);
+}
+
+.fixit-process-card {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+  padding: 22px;
+  border: 1px solid var(--fixit-line);
+  border-radius: 16px;
+  background: var(--fixit-panel-light);
+}
+
+.fixit-process-card h3 {
+  position: absolute;
+  bottom: 20px;
+  left: 22px;
+  z-index: 1;
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.fixit-process-circle {
+  position: absolute;
+  right: -20px;
+  bottom: -100px;
+  width: 230px;
+  height: 230px;
+  display: grid;
+  place-items: start;
+  padding: 42px;
+  border: 42px solid #3d6fe9;
+  border-radius: 50%;
+}
+
+.fixit-process-circle span {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #83a5ff;
+}
+
+.fixit-process-copy h2 {
+  max-width: 430px;
+}
+
+.fixit-process-copy > p {
+  margin: 18px 0;
+}
+
+.fixit-steps {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-top: 1px solid var(--fixit-line);
+}
+
+.fixit-steps li {
+  display: flex;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--fixit-line);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.fixit-steps li span {
+  color: #83a5ff;
+}
+
+/* Características y cierre */
+.fixit-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 35px max(12vw, 24px);
+  color: white;
+  background: #3d6fe9;
+}
+
+.fixit-highlights div {
+  padding: 8px 0;
+  border-top: 1px solid rgba(7, 17, 31, 0.45);
+}
+
+.fixit-highlights strong,
+.fixit-highlights span {
+  display: block;
+}
+
+.fixit-highlights strong {
+  margin: 4px 0 5px;
+  font-size: 20px;
+}
+
+.fixit-highlights span {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.fixit-join {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  padding: 65px max(12vw, 24px);
+  color: var(--fixit-text);
+  background: var(--fixit-panel-light);
+}
+
+.fixit-join h2 {
+  max-width: 550px;
+  font-size: clamp(32px, 5vw, 48px);
+}
+
+.fixit-join-action p {
+  margin-top: 0;
+}
+
+.fixit-footer {
+  min-height: 74px;
+  padding: 18px max(7vw, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: #aab8ce;
+  background: #080d15;
+  font-size: 11px;
+}
+
+.fixit-footer .fixit-brand {
+  color: #fff;
+}
+
+.fixit-footer > a:last-child:hover {
+  color: var(--fixit-cyan);
+}
+
+/* Ventana de inicio de sesión */
+.fixit-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  padding: 20px;
+  display: grid;
+  place-items: center;
+  background: rgba(2, 7, 15, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.fixit-login-modal {
+  position: relative;
+  width: min(100%, 430px);
+  padding: 35px;
+  border: 1px solid var(--fixit-line);
+  border-radius: 18px;
+  color: var(--fixit-text);
+  background: var(--fixit-panel);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+}
+
+.fixit-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--fixit-line);
+  border-radius: 50%;
+  color: #fff;
+  background: transparent;
+  font-size: 21px;
+}
+
+.fixit-login-modal h2 {
+  margin: 12px 0 8px;
+  font-size: 30px;
+}
+
+.fixit-login-modal > p {
+  margin: 0 0 22px;
+  color: var(--fixit-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.fixit-login-modal form,
+.registro-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.fixit-login-modal label,
+.registro-card label {
+  margin: 13px 0 7px;
+  color: #dce8fb;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.fixit-login-modal input,
+.registro-card input {
+  width: 100%;
+  min-height: 45px;
+  padding: 0 13px;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 8px;
+  outline: none;
+  color: #fff;
+  background: #0b1526;
+  font-size: 13px;
+}
+
+.fixit-login-modal input:focus,
+.registro-card input:focus {
+  border-color: var(--fixit-blue);
+  box-shadow: 0 0 0 3px rgba(79, 125, 243, 0.15);
+}
+
+.fixit-login-modal input::placeholder,
+.registro-card input::placeholder {
+  color: #8491a7;
+}
+
+.login-submit {
+  width: 100%;
+  margin-top: 22px;
+}
+
+.fixit-register-prompt {
+  margin: 22px 0 0;
+  color: var(--fixit-muted);
+  text-align: center;
+  font-size: 12px;
+}
+
+.fixit-register-prompt button,
+.registro-header button {
+  padding: 0;
+  border: 0;
+  color: #83a5ff;
+  background: transparent;
+  font-weight: 700;
+}
+
+.fixit-register-prompt button:hover,
+.registro-header button:hover {
+  color: var(--fixit-cyan);
+}
+
+.form-message {
+  margin: 14px 0 0;
+  color: var(--fixit-cyan);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Pantalla de registro */
+.registro-page {
+  min-height: 100vh;
+  padding: 0 24px 60px;
+  color: var(--fixit-text);
+  background:
+    radial-gradient(circle at 50% 25%, rgba(50, 91, 170, 0.18), transparent 34%),
+    var(--fixit-bg);
+}
+
+.registro-header {
+  width: min(100%, 1100px);
+  height: 76px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--fixit-line);
+}
+
+.registro-header p {
+  color: var(--fixit-muted);
+  font-size: 12px;
+}
+
+.registro-card {
+  width: min(100%, 450px);
+  margin: 55px auto 0;
+  padding: 34px;
+  border: 1px solid var(--fixit-line);
+  border-radius: 18px;
+  background: var(--fixit-panel);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+}
+
+.registro-card h1 {
+  margin: 12px 0 8px;
+  font-size: 34px;
+  letter-spacing: -1px;
+}
+
+.registro-intro {
+  margin: 0 0 20px;
+  color: var(--fixit-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.registro-submit {
+  width: 100%;
+  margin-top: 23px;
+}
+
+.registro-back-link {
+  margin-top: 22px;
+  padding: 0;
+  border: 0;
+  color: #a9bbdf;
+  background: transparent;
+  font-size: 12px;
+}
+
+.registro-back-link:hover {
+  color: var(--fixit-cyan);
+}
+
+/* Adaptación a celulares y tabletas */
+@media (max-width: 760px) {
+  .fixit-header {
+    height: 66px;
+    padding: 0 20px;
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+  }
+
+  .fixit-login-button {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .fixit-menu-toggle {
+    grid-column: 3;
+    grid-row: 1;
+    display: block;
+    padding: 5px;
+    border: 0;
+    color: #fff;
+    background: transparent;
+    font-size: 25px;
+  }
+
+  .fixit-nav {
+    position: absolute;
+    top: 65px;
+    right: 0;
+    left: 0;
+    display: none;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 20px 16px;
+    background: var(--fixit-header);
+    border-bottom: 1px solid rgba(53, 201, 230, 0.5);
+  }
+
+  .fixit-nav.fixit-nav-abierto {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fixit-nav a {
+    padding: 13px 4px;
+    border-bottom: 1px solid var(--fixit-line);
+  }
+
+  .fixit-hero {
+    min-height: 610px;
+    padding: 55px 24px 105px;
+    background-position: 58% center;
+  }
+
+  .fixit-hero-content {
+    width: 100%;
+  }
+
+  .fixit-hero h1 {
+    font-size: clamp(42px, 10vw, 66px);
+    letter-spacing: -2.7px;
+  }
+
+  .fixit-hero-note {
+    right: 24px;
+    bottom: 72px;
+    width: min(230px, 55%);
+    font-size: 10px;
+  }
+
+  .fixit-bottom-label {
+    right: 20px;
+    left: 20px;
+    font-size: 8px;
+  }
+
+  .fixit-categories {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .fixit-benefits-heading,
+  .fixit-join {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .fixit-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fixit-benefit {
+    min-height: 145px;
+    border-right: 0;
+    border-bottom: 1px solid var(--fixit-line);
+  }
+
+  .fixit-benefit:last-child {
+    border-bottom: 0;
+  }
+
+  .fixit-process {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 55px 24px;
+  }
+
+  .fixit-highlights {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 30px 24px;
+  }
+
+  .fixit-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .fixit-hero {
+    min-height: 640px;
+  }
+
+  .fixit-eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.8px;
+  }
+
+  .fixit-hero h1 {
+    font-size: 42px;
+  }
+
+  .fixit-description {
+    font-size: 13px;
+  }
+
+  .fixit-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  .fixit-hero-note {
+    bottom: 74px;
+  }
+
+  .fixit-bottom-label {
+    font-size: 7px;
+    letter-spacing: 0.4px;
+  }
+
+  .fixit-login-modal,
+  .registro-card {
+    padding: 25px 21px;
+  }
+
+  .registro-page {
+    padding: 0 16px 40px;
+  }
+
+ /* Fondo con imagen para la pantalla de registro */
+.registro-page {
+  background-color: var(--fixit-bg);
+  background-image:
+    linear-gradient(
+      rgba(5, 14, 29, 0.78),
+      rgba(5, 14, 29, 0.86)
+    ),
+    url('/images/tecnico-registro.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Mantiene el formulario legible sobre la imagen */
+.registro-card {
+  background: rgba(16, 27, 49, 0.94);
+  backdrop-filter: blur(8px);
+}
+
+/* Asegura que el título se vea blanco */
+.registro-card h1 {
+  color: var(--fixit-text);
+}
+}
+
